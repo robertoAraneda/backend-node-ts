@@ -33,6 +33,13 @@ app.get('/posts', async (req, res) => {
     res.json(posts);
 });
 
+app.get('/users', async (req, res) => {
+    const users = await prisma.user.findMany({
+        include: { posts: true },
+    });
+    res.json(users);
+});
+
 async function main() {
     // ... you will write your Prisma Client queries here
     await prisma.user.create({
