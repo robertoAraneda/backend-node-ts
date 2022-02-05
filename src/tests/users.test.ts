@@ -4,18 +4,18 @@ import Server from '../server/server';
 import UserRoute from '../routes/user.route';
 
 afterAll(async () => {
-    await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
+  await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
 });
 
 describe('[GET] /users', () => {
-    it('response findAll users', async () => {
-        const usersRoute = new UserRoute();
+  it('response findAll users', async () => {
+    const usersRoute = new UserRoute();
 
-        const app = new Server([usersRoute]);
-        const response = await request(app.getServer()).get(`${usersRoute.path}`).expect(200);
+    const app = new Server([usersRoute]);
+    const response = await request(app.getServer()).get(`${usersRoute.path}`).expect(200);
 
-        console.dir(response.body);
+    console.dir(response.body);
 
-        return response;
-    });
+    return response;
+  });
 });
