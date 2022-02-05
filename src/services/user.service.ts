@@ -1,5 +1,4 @@
 import { User } from '@prisma/client';
-
 import prisma from '../config/client';
 
 class UserService {

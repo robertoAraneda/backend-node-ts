@@ -29,7 +29,5 @@ it('response findAll users', async () => {
   const app = new Server([usersRoute]);
   const response = await request(app.getServer()).get(`${usersRoute.path}`).expect(200);
 
-  console.dir(response.body);
-
   return response;
 });

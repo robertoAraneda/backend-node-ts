@@ -3,7 +3,7 @@ import UserService from '../user.service';
 import { prismaMock } from '../../config/singleton';
 
 describe('listFilesInDirectorySync', () => {
-  let userService: UserService = new UserService();
+  const userService: UserService = new UserService();
 
   test('should create new user  ', async () => {
     const user = {
