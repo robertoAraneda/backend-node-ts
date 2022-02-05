@@ -1,44 +1,75 @@
 {
-    "name": "ts",
+    "name": "base-node-ts",
     "version": "1.0.0",
-    "description": "",
+    "description": "Proyecto base para desarrollar un backend modular con Node y Typescript",
     "main": "dist/app.js",
     "scripts": {
         "build": "rimraf dist && tsc",
         "dev_": "ts-node-dev --respawn ./src/index.ts",
-        "dev": "nodemon ./src/index.ts",
-        "start": "node dist/index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "dev__": "nodemon ./src/index.ts",
+        "start_": "node dist/index.js",
+        "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
+        "dev": "cross-env NODE_ENV=development nodemon",
+        "test": "jest -i",
+        "test:e2e_": "dotenv -e .env.test jest -i",
+        "migrate:postgres": "dotenv -e .env.test -- npx prisma migrate dev --name postgres-init",
+        "docker:up": "docker-compose up -d",
+        "docker:down": "docker-compose down",
+        "test:e2e": "yarn docker:up && dotenv -e .env.test -- npx prisma migrate dev --name postgres-init && dotenv -e .env.test jest -i"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/robertoAraneda/backend-node-ts.git"
     },
-    "keywords": [],
-    "author": "",
+    "keywords": [
+        "Typescript",
+        "Prisma",
+        "Jest",
+        "Node"
+    ],
+    "author": "Roberto Araneda",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/robertoAraneda/backend-node-ts/issues"
     },
     "homepage": "https://github.com/robertoAraneda/backend-node-ts#readme",
     "devDependencies": {
+        "@types/bcrypt": "^5.0.0",
         "@types/body-parser": "^1.19.2",
+        "@types/cors": "^2.8.12",
         "@types/express": "^4.17.13",
+        "@types/hpp": "^0.2.2",
+        "@types/jest": "^27.4.0",
+        "@types/morgan": "^1.9.3",
         "@types/node": "^17.0.14",
+        "@types/supertest": "^2.0.11",
+        "dotenv-cli": "^4.1.1",
+        "jest": "^27.4.7",
+        "jest-mock-extended": "^2.0.4",
         "nodemon": "^2.0.15",
         "prisma": "^3.9.1",
+        "supertest": "^6.2.2",
+        "ts-jest": "^27.1.3",
         "ts-node": "^10.4.0",
         "ts-node-dev": "^1.1.8",
+        "tsconfig-paths": "^3.12.0",
         "tslint": "^6.1.3",
         "typescript": "^4.5.5"
     },
     "dependencies": {
         "@prisma/client": "3.9.1",
+        "bcrypt": "^5.0.1",
         "body-parser": "^1.19.1",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.13.2",
+        "cors": "^2.8.5",
         "cross-env": "^7.0.3",
         "dotenv": "^16.0.0",
         "express": "^4.17.2",
         "helmet": "^5.0.2",
+        "hpp": "^0.2.3",
+        "joi": "^17.6.0",
+        "morgan": "^1.10.0",
         "rimraf": "^3.0.2"
     }
 }
